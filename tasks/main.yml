@@ -33,3 +33,15 @@
   when:
     - 'ansible_os_family == "RedHat"'
     - 'ansible_distribution_major_version == "7"'
+
+- name: 'Enable automatic reboots after kernel updates'
+  template:
+    src: '1new-kernel-reboot.j2'
+    dest: '/etc/cron.daily/1new-kernel-reboot'
+    owner: 'root'
+    group: 'root'
+    mode: '0744'
+  when:
+    - 'ansible_os_family == "RedHat"'
+    - 'ansible_distribution_major_version == "7"'
+    - 'automatic_reboots_after_kernel_updates | bool'
