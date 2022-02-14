@@ -11,7 +11,7 @@ None.
 Role Variables
 --------------
 
-None.
+- `automatic_reboots_after_kernel_updates`: If the user desires, she can set this variable to `true` and this role will create a script, that reboots after kernel updates. By default, this is disabled.
 
 Dependencies
 ------------
