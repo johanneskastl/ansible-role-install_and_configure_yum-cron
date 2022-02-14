@@ -1,0 +1,4 @@
+---
+# install_and_configure_yum-cron/defaults/main.yml
+
+automatic_reboots_after_kernel_updates: 'false'
