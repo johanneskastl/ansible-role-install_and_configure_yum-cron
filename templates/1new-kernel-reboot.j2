@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+# {{ ansible_managed }}
+#
+
+INSTALLED_KERNEL="$(grep Linux /boot/grub2/grubenv | sed -e 's/.*(\(.*\))\ .*/\1/')"
+
+RUNNING_KERNEL="$(uname -r)"
+
+if [ "${INSTALLED_KERNEL}" != "${RUNNING_KERNEL}" ]; then
+logger -t "yum-cron" "yum-cron triggered reboot, cause of kernel update. Running Kernel: ${RUNNING_KERNEL} -> ${INSTALLED_KERNEL}"
+sleep 10
+reboot
+fi
+exit 0
