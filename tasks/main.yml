@@ -1,0 +1,25 @@
+---
+# install_and_configure_yum-cron/tasks/main.yml
+
+- name: 'Install package yum-cron'
+  yum:
+    name: 'yum-cron'
+    state: 'present'
+    update_cache: 'no'
+  when:
+    - 'ansible_os_family == "RedHat"'
+    - 'ansible_distribution_major_version == "7"'
+
+- name: 'Create /etc/yum/yum-cron.conf and /etc/yum/yum-cron-hourly.conf'
+  template:
+    src: 'yum-cron.conf.j2'
+    dest: "/etc/yum/{{ item }}"
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  with_items:
+    - 'yum-cron.conf'
+    - 'yum-cron-hourly.conf'
+  when:
+    - 'ansible_os_family == "RedHat"'
+    - 'ansible_distribution_major_version == "7"'
