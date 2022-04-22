@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: 'install_and_configure_yum-cron'
+  namespace: 'johanneskastl'
   author: 'Johannes Kastl'
   description: 'Install and configure yum-cron'
   company: 'B1 Systems GmbH'
