@@ -2,7 +2,7 @@
 # install_and_configure_yum-cron/tasks/main.yml
 
 - name: 'Install package yum-cron'
-  yum:
+  ansible.builtin.yum:
     name: 'yum-cron'
     state: 'present'
     update_cache: 'no'
@@ -11,7 +11,7 @@
     - 'ansible_distribution_major_version == "7"'
 
 - name: 'Create /etc/yum/yum-cron.conf and /etc/yum/yum-cron-hourly.conf'
-  template:
+  ansible.builtin.template:
     src: 'yum-cron.conf.j2'
     dest: "/etc/yum/{{ item }}"
     owner: 'root'
@@ -25,7 +25,7 @@
     - 'ansible_distribution_major_version == "7"'
 
 - name: 'Start and enable the yum-cron service'
-  service:
+  ansible.builtin.service:
     name: 'yum-cron'
     state: 'started'
     enabled: 'yes'
@@ -35,7 +35,7 @@
     - 'ansible_distribution_major_version == "7"'
 
 - name: 'Enable automatic reboots after kernel updates'
-  template:
+  ansible.builtin.template:
     src: '1new-kernel-reboot.j2'
     dest: '/etc/cron.daily/1new-kernel-reboot'
     owner: 'root'
