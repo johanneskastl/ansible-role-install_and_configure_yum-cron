@@ -25,7 +25,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-        - { role: 'johanneskastl.install_and_configure_yum-cron' }
+        - role: 'johanneskastl.install_and_configure_yum-cron'
 
 License
 -------
